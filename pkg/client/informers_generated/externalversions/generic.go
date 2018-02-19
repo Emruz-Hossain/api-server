@@ -18,7 +18,8 @@
 package externalversions
 
 import (
-	v1alpha1 "api-server/pkg/apis/car/v1alpha1"
+	v1alpha1 "api-server/pkg/apis/customdp/v1alpha1"
+	customrc_v1alpha1 "api-server/pkg/apis/customrc/v1alpha1"
 	"fmt"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
@@ -50,9 +51,13 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=car.emruz.example.com, Version=v1alpha1
-	case v1alpha1.SchemeGroupVersion.WithResource("carcontrollers"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Car().V1alpha1().CarControllers().Informer()}, nil
+	// Group=customdp.emruz.com, Version=v1alpha1
+	case v1alpha1.SchemeGroupVersion.WithResource("customdeployments"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Customdp().V1alpha1().CustomDeployments().Informer()}, nil
+
+		// Group=customrc.emruz.com, Version=v1alpha1
+	case customrc_v1alpha1.SchemeGroupVersion.WithResource("customreplicationcontrollers"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Customrc().V1alpha1().CustomReplicationControllers().Informer()}, nil
 
 	}
 

@@ -16,8 +16,10 @@
 
 import (
 	clientset "api-server/pkg/client/clientset_generated/internalclientset"
-	carinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/car/internalversion"
-	fakecarinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/car/internalversion/fake"
+	customdpinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/customdp/internalversion"
+	fakecustomdpinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/customdp/internalversion/fake"
+	customrcinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/customrc/internalversion"
+	fakecustomrcinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/customrc/internalversion/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -58,7 +60,12 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 
 var _ clientset.Interface = &Clientset{}
 
-// Car retrieves the CarClient
-func (c *Clientset) Car() carinternalversion.CarInterface {
-	return &fakecarinternalversion.FakeCar{Fake: &c.Fake}
+// Customdp retrieves the CustomdpClient
+func (c *Clientset) Customdp() customdpinternalversion.CustomdpInterface {
+	return &fakecustomdpinternalversion.FakeCustomdp{Fake: &c.Fake}
+}
+
+// Customrc retrieves the CustomrcClient
+func (c *Clientset) Customrc() customrcinternalversion.CustomrcInterface {
+	return &fakecustomrcinternalversion.FakeCustomrc{Fake: &c.Fake}
 }

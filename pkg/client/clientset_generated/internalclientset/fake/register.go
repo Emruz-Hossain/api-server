@@ -15,7 +15,8 @@
 */package fake
 
 import (
-	carinternalversion "api-server/pkg/apis/car"
+	customdpinternalversion "api-server/pkg/apis/customdp"
+	customrcinternalversion "api-server/pkg/apis/customrc"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -46,6 +47,7 @@ func init() {
 // After this, RawExtensions in Kubernetes types will serialize kube-aggregator types
 // correctly.
 func AddToScheme(scheme *runtime.Scheme) {
-	carinternalversion.AddToScheme(scheme)
+	customdpinternalversion.AddToScheme(scheme)
+	customrcinternalversion.AddToScheme(scheme)
 
 }

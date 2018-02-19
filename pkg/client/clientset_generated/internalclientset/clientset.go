@@ -15,7 +15,8 @@
 */package internalclientset
 
 import (
-	carinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/car/internalversion"
+	customdpinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/customdp/internalversion"
+	customrcinternalversion "api-server/pkg/client/clientset_generated/internalclientset/typed/customrc/internalversion"
 	glog "github.com/golang/glog"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
@@ -24,19 +25,26 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	Car() carinternalversion.CarInterface
+	Customdp() customdpinternalversion.CustomdpInterface
+	Customrc() customrcinternalversion.CustomrcInterface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	car *carinternalversion.CarClient
+	customdp *customdpinternalversion.CustomdpClient
+	customrc *customrcinternalversion.CustomrcClient
 }
 
-// Car retrieves the CarClient
-func (c *Clientset) Car() carinternalversion.CarInterface {
-	return c.car
+// Customdp retrieves the CustomdpClient
+func (c *Clientset) Customdp() customdpinternalversion.CustomdpInterface {
+	return c.customdp
+}
+
+// Customrc retrieves the CustomrcClient
+func (c *Clientset) Customrc() customrcinternalversion.CustomrcInterface {
+	return c.customrc
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -55,7 +63,11 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 	}
 	var cs Clientset
 	var err error
-	cs.car, err = carinternalversion.NewForConfig(&configShallowCopy)
+	cs.customdp, err = customdpinternalversion.NewForConfig(&configShallowCopy)
+	if err != nil {
+		return nil, err
+	}
+	cs.customrc, err = customrcinternalversion.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +84,8 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 // panics if there is an error in the config.
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	var cs Clientset
-	cs.car = carinternalversion.NewForConfigOrDie(c)
+	cs.customdp = customdpinternalversion.NewForConfigOrDie(c)
+	cs.customrc = customrcinternalversion.NewForConfigOrDie(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClientForConfigOrDie(c)
 	return &cs
@@ -81,7 +94,8 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.car = carinternalversion.New(c)
+	cs.customdp = customdpinternalversion.New(c)
+	cs.customrc = customrcinternalversion.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs

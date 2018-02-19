@@ -17,7 +17,7 @@
 
 
 //
-// +domain=emruz.example.com
+// +domain=emruz.com
 
 package apis
 

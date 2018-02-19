@@ -19,8 +19,10 @@ limitations under the License.
 package apis
 
 import (
-	"api-server/pkg/apis/car"
-	carv1alpha1 "api-server/pkg/apis/car/v1alpha1"
+	"api-server/pkg/apis/customdp"
+	customdpv1alpha1 "api-server/pkg/apis/customdp/v1alpha1"
+	"api-server/pkg/apis/customrc"
+	customrcv1alpha1 "api-server/pkg/apis/customrc/v1alpha1"
 	"github.com/kubernetes-incubator/apiserver-builder/pkg/builders"
 )
 
@@ -28,19 +30,33 @@ import (
 // so they can be registered with the apiserver
 func GetAllApiBuilders() []*builders.APIGroupBuilder {
 	return []*builders.APIGroupBuilder{
-		GetCarAPIBuilder(),
+		GetCustomdpAPIBuilder(),
+		GetCustomrcAPIBuilder(),
 	}
 }
 
-var carApiGroup = builders.NewApiGroupBuilder(
-	"car.emruz.example.com",
-	"api-server/pkg/apis/car").
-	WithUnVersionedApi(car.ApiVersion).
+var customdpApiGroup = builders.NewApiGroupBuilder(
+	"customdp.emruz.com",
+	"api-server/pkg/apis/customdp").
+	WithUnVersionedApi(customdp.ApiVersion).
 	WithVersionedApis(
-		carv1alpha1.ApiVersion,
+		customdpv1alpha1.ApiVersion,
 	).
 	WithRootScopedKinds()
 
-func GetCarAPIBuilder() *builders.APIGroupBuilder {
-	return carApiGroup
+func GetCustomdpAPIBuilder() *builders.APIGroupBuilder {
+	return customdpApiGroup
+}
+
+var customrcApiGroup = builders.NewApiGroupBuilder(
+	"customrc.emruz.com",
+	"api-server/pkg/apis/customrc").
+	WithUnVersionedApi(customrc.ApiVersion).
+	WithVersionedApis(
+		customrcv1alpha1.ApiVersion,
+	).
+	WithRootScopedKinds()
+
+func GetCustomrcAPIBuilder() *builders.APIGroupBuilder {
+	return customrcApiGroup
 }

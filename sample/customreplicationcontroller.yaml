@@ -1,0 +1,19 @@
+apiVersion: customrc.emruz.com/v1alpha1
+kind: CustomReplicationController
+metadata:
+  name:  customreplicationcontroller-example
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-app
+    template:
+      spec:
+       containers:
+        - name: webcalculator
+          image: emruzhossain/webcalculator:latest
+          ports:
+          - name:  container-port
+            containerPort:  9000
+            protocol: TCP

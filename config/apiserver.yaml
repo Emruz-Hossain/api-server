@@ -2,32 +2,204 @@
 apiVersion: apiregistration.k8s.io/v1beta1
 kind: APIService
 metadata:
-  name: v1alpha1.car.emruz.example.com
+  name: v1alpha1.customdp.emruz.com
   labels:
-    api: carservice
+    api: apiserver-operator
     apiserver: "true"
 spec:
   version: v1alpha1
-  group: car.emruz.example.com
+  group: customdp.emruz.com
   groupPriorityMinimum: 2000
   priority: 200
   service:
-    name: carservice
+    name: apiserver-operator
     namespace: default
   versionPriority: 10
-  caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURwekNDQW8rZ0F3SUJBZ0lKQUppdnBGZDVjQnJKTUEwR0NTcUdTSWIzRFFFQkN3VUFNR294Q3pBSkJnTlYKQkFZVEFuVnVNUXN3Q1FZRFZRUUlEQUp6ZERFS01BZ0dBMVVFQnd3QmJERUtNQWdHQTFVRUNnd0JiekVMTUFrRwpBMVVFQ3d3Q2IzVXhLVEFuQmdOVkJBTU1JR05oY25ObGNuWnBZMlV0WTJWeWRHbG1hV05oZEdVdFlYVjBhRzl5CmFYUjVNQjRYRFRFNE1ESXhOakE0TVRrME5Wb1hEVEU1TURJeE5qQTRNVGswTlZvd2FqRUxNQWtHQTFVRUJoTUMKZFc0eEN6QUpCZ05WQkFnTUFuTjBNUW93Q0FZRFZRUUhEQUZzTVFvd0NBWURWUVFLREFGdk1Rc3dDUVlEVlFRTApEQUp2ZFRFcE1DY0dBMVVFQXd3Z1kyRnljMlZ5ZG1salpTMWpaWEowYVdacFkyRjBaUzFoZFhSb2IzSnBkSGt3CmdnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURDSllVcEtNbjBYSTlnQ1RlSUhQVHUKdFJ4NU9HTVZQc2VkTGd2L2cxVUN6L1J0bFV6amJJTi93OG9FdEJueE5DMzJId1RFR3FlZm5Rb2RzdFkrWjIycQpKMzN6VWFZQlRZWUVSbDVuVTZ2dkZUNjBjZ2s3M3B3YkxrcFI4bFF1WTBLc3pVdWVHKzViMG5KVFpVSHJjTDgvCkZFYmtHTVhkRUNicWI2MDVOQ2I1cTM5bmJEczJYek5sMnNRTk1kTHY4ZjJZZmlFakowb0xvU0IydWEyUGlMWkwKeWpJL2RnakE4UEltTXc5eEZsbWlmaDN1VXhsdVRsNzJ0SWh5RjBsU2ozOHFTU0dUMy9GMDMyRVVIdmlEb0JCOApTNk9JaDJ1S05qZExBNG9pZlRaY1VPK2tNUWk3dGZoVXduUVNMWWdJOE1JMWlwWGtVUllDa1k3ajhKNUlzK09GCkFnTUJBQUdqVURCT01CMEdBMVVkRGdRV0JCUUdCdzFtMlIzcUh2R25lbDFEUk5KZ2JHeG5jekFmQmdOVkhTTUUKR0RBV2dCUUdCdzFtMlIzcUh2R25lbDFEUk5KZ2JHeG5jekFNQmdOVkhSTUVCVEFEQVFIL01BMEdDU3FHU0liMwpEUUVCQ3dVQUE0SUJBUUNtVTJPazFEVnpXMXJCN2dUdHhyZUxZdy9GRWhabEY4VjZFWjJQai9oYlJOVlJiRnFrCjVCWnNlcEYwYlpVM1VEUjhZUmxVWDBNMUYzL1RPNDhuSEtQU0NUcFdwN05Bay8wRmZnN1NKMnhua3FqenJCcm4KcEVadG9UOGloNlFZMFFZZE1STHM1SDFXRmRKMVZHdURCd1ZNeTZoc240N1FUMWZtZlNVSHV4TVROQXQrZTVqeAoxL2VINFBpZHFObWJQaFdVNnpNTDRFN3ZFNWVXMXJnY2d1TnhGclpkZHNvekNWOGNKNWwyaU93cXYvS0tSVDBlCkd3bFU3ZGpHUE4rQXhTVUFjc09aYUtETVhHTGRwTzFIQUd1SXozZkVQT2YycHB5aElEQzBNeGYvRG85bzB3czUKVWJIVGNHYldnalFtdmVHbXVvcmM5U3I0SnpLYkZFb2ltQi9KCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+  caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUR0ekNDQXArZ0F3SUJBZ0lKQU43L21ZK3lBc2RKTUEwR0NTcUdTSWIzRFFFQkN3VUFNSEl4Q3pBSkJnTlYKQkFZVEFuVnVNUXN3Q1FZRFZRUUlEQUp6ZERFS01BZ0dBMVVFQnd3QmJERUtNQWdHQTFVRUNnd0JiekVMTUFrRwpBMVVFQ3d3Q2IzVXhNVEF2QmdOVkJBTU1LR0Z3YVhObGNuWmxjaTF2Y0dWeVlYUnZjaTFqWlhKMGFXWnBZMkYwClpTMWhkWFJvYjNKcGRIa3dIaGNOTVRnd01qRTVNVEExTXpFNVdoY05NVGt3TWpFNU1UQTFNekU1V2pCeU1Rc3cKQ1FZRFZRUUdFd0oxYmpFTE1Ba0dBMVVFQ0F3Q2MzUXhDakFJQmdOVkJBY01BV3d4Q2pBSUJnTlZCQW9NQVc4eApDekFKQmdOVkJBc01BbTkxTVRFd0x3WURWUVFERENoaGNHbHpaWEoyWlhJdGIzQmxjbUYwYjNJdFkyVnlkR2xtCmFXTmhkR1V0WVhWMGFHOXlhWFI1TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUEKb3BMRGJKK0wrcVlEb3RkMUNhbERqeTF5dlk1WlZOSmVXRDc3OEtHQWtnT0hnMkgzc2Z2ekZLaXRxTndyRHpiSApSZDFUTXc0b01oWXJnVU9TdUpkTTZTUHBPdGk1L1UrM2ZnNzhud05vdDNZbzRDOVhJSWpMbWt6blplbllKRFVICno0Nk5McitMeTgrWHRYUlc2dkpwb2J6Z1lvZ05KWWxNazZDWWpkZjZvUE12UnRXd05ISW43THRUK1pyMktDL1EKKzlFL0VqdTYyam1YakZjTlpiMWo1RDhRMW9aanNidG82djB5MDI1aG9FZmtkOTJrZ3RLQlUxN2JjR2JyNVhjQwoveHZWMFhLN3U0RVdRbnVmekRnR3lTYnBuQWw2TnJOaE5RWkQvM2ZXMHNmL2FGU1IyNHl3VlRib3pFcThOTHloCmtucVNvOHBvM3hUREJiUm5PMVV5VVFJREFRQUJvMUF3VGpBZEJnTlZIUTRFRmdRVU0vdndseVNYUHNraDhHbHMKR1FsVEdhc3ZGdWN3SHdZRFZSMGpCQmd3Rm9BVU0vdndseVNYUHNraDhHbHNHUWxUR2FzdkZ1Y3dEQVlEVlIwVApCQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFhMTBmS0hYTkhWQmp2amd2UURUZHZROVFlbmtUCndvdCsyb3NQWHI2NG51S0NUVENBSEdVMzk3NmJTM0RmWEFaVnh1MDYxVjByUHlxbVQ3QUViejRlVGxCcFBXckgKaHB0YWdlVW12TjFrMFkya0NqZ3hhNE15QWpWbklDdFBocjJ5U1NtZ28yV1RlaVBjUGpreU1jTnBqb0dxL0U1VQpQWlFqZ2ZTZmRlSktOYVpicVdUQ1k0a05lSDFGMUtPQldSb3MyMkJVbnhnSGtLdk9MTFVyUHJTNy9nSzY1UzBiCnlQRFZ3V3h4Ly9taWV4bXhkengyZnFFT2xsVUZEdE9mSkRLKzdoYzU1MUJaUXc4ZVVsckxtL3NlTGxoTlBScVkKSDhzRXdKSUl5QTR1dW1aclVNOTNjNGs2ajJYakdpb3pJQmRjcU1uWHRmQWlUd1Y3WlVpMEdPR3czQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+---
+apiVersion: apiregistration.k8s.io/v1beta1
+kind: APIService
+metadata:
+  name: v1alpha1.customrc.emruz.com
+  labels:
+    api: apiserver-operator
+    apiserver: "true"
+spec:
+  version: v1alpha1
+  group: customrc.emruz.com
+  groupPriorityMinimum: 2000
+  priority: 200
+  service:
+    name: apiserver-operator
+    namespace: default
+  versionPriority: 10
+  caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUR0ekNDQXArZ0F3SUJBZ0lKQU43L21ZK3lBc2RKTUEwR0NTcUdTSWIzRFFFQkN3VUFNSEl4Q3pBSkJnTlYKQkFZVEFuVnVNUXN3Q1FZRFZRUUlEQUp6ZERFS01BZ0dBMVVFQnd3QmJERUtNQWdHQTFVRUNnd0JiekVMTUFrRwpBMVVFQ3d3Q2IzVXhNVEF2QmdOVkJBTU1LR0Z3YVhObGNuWmxjaTF2Y0dWeVlYUnZjaTFqWlhKMGFXWnBZMkYwClpTMWhkWFJvYjNKcGRIa3dIaGNOTVRnd01qRTVNVEExTXpFNVdoY05NVGt3TWpFNU1UQTFNekU1V2pCeU1Rc3cKQ1FZRFZRUUdFd0oxYmpFTE1Ba0dBMVVFQ0F3Q2MzUXhDakFJQmdOVkJBY01BV3d4Q2pBSUJnTlZCQW9NQVc4eApDekFKQmdOVkJBc01BbTkxTVRFd0x3WURWUVFERENoaGNHbHpaWEoyWlhJdGIzQmxjbUYwYjNJdFkyVnlkR2xtCmFXTmhkR1V0WVhWMGFHOXlhWFI1TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUEKb3BMRGJKK0wrcVlEb3RkMUNhbERqeTF5dlk1WlZOSmVXRDc3OEtHQWtnT0hnMkgzc2Z2ekZLaXRxTndyRHpiSApSZDFUTXc0b01oWXJnVU9TdUpkTTZTUHBPdGk1L1UrM2ZnNzhud05vdDNZbzRDOVhJSWpMbWt6blplbllKRFVICno0Nk5McitMeTgrWHRYUlc2dkpwb2J6Z1lvZ05KWWxNazZDWWpkZjZvUE12UnRXd05ISW43THRUK1pyMktDL1EKKzlFL0VqdTYyam1YakZjTlpiMWo1RDhRMW9aanNidG82djB5MDI1aG9FZmtkOTJrZ3RLQlUxN2JjR2JyNVhjQwoveHZWMFhLN3U0RVdRbnVmekRnR3lTYnBuQWw2TnJOaE5RWkQvM2ZXMHNmL2FGU1IyNHl3VlRib3pFcThOTHloCmtucVNvOHBvM3hUREJiUm5PMVV5VVFJREFRQUJvMUF3VGpBZEJnTlZIUTRFRmdRVU0vdndseVNYUHNraDhHbHMKR1FsVEdhc3ZGdWN3SHdZRFZSMGpCQmd3Rm9BVU0vdndseVNYUHNraDhHbHNHUWxUR2FzdkZ1Y3dEQVlEVlIwVApCQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFhMTBmS0hYTkhWQmp2amd2UURUZHZROVFlbmtUCndvdCsyb3NQWHI2NG51S0NUVENBSEdVMzk3NmJTM0RmWEFaVnh1MDYxVjByUHlxbVQ3QUViejRlVGxCcFBXckgKaHB0YWdlVW12TjFrMFkya0NqZ3hhNE15QWpWbklDdFBocjJ5U1NtZ28yV1RlaVBjUGpreU1jTnBqb0dxL0U1VQpQWlFqZ2ZTZmRlSktOYVpicVdUQ1k0a05lSDFGMUtPQldSb3MyMkJVbnhnSGtLdk9MTFVyUHJTNy9nSzY1UzBiCnlQRFZ3V3h4Ly9taWV4bXhkengyZnFFT2xsVUZEdE9mSkRLKzdoYzU1MUJaUXc4ZVVsckxtL3NlTGxoTlBScVkKSDhzRXdKSUl5QTR1dW1aclVNOTNjNGs2ajJYakdpb3pJQmRjcU1uWHRmQWlUd1Y3WlVpMEdPR3czQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: carservice
+  name: apiserver-operator
   namespace: default
   labels:
-    api: carservice
+    api: apiserver-operator
     apiserver: "true"
 spec:
-  type: ExternalName
-  externalName: "10.0.2.2"
   ports:
   - port: 443
     protocol: TCP
+    targetPort: 443
+  selector:
+    api: apiserver-operator
+    apiserver: "true"
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: apiserver-operator
+  namespace: default
+  labels:
+    api: apiserver-operator
+    apiserver: "true"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        api: apiserver-operator
+        apiserver: "true"
+    spec:
+      containers:
+      - name: apiserver
+        image: emruzhossain/api-server:v3
+        volumeMounts:
+        - name: apiserver-certs
+          mountPath: /apiserver.local.config/certificates
+          readOnly: true
+        command:
+        - "./apiserver"
+        args:
+        - "--etcd-servers=http://etcd-svc:2379"
+        - "--tls-cert-file=/apiserver.local.config/certificates/tls.crt"
+        - "--tls-private-key-file=/apiserver.local.config/certificates/tls.key"
+        - "--audit-log-path=-"
+        - "--audit-log-maxage=0"
+        - "--audit-log-maxbackup=0"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 20Mi
+          limits:
+            cpu: 100m
+            memory: 30Mi
+      - name: controller
+        image: emruzhossain/api-server:v3
+        command:
+        - "./controller-manager"
+        args:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 20Mi
+          limits:
+            cpu: 100m
+            memory: 30Mi
+      volumes:
+      - name: apiserver-certs
+        secret:
+          secretName: apiserver-operator
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: etcd
+  namespace: default
+spec:
+  serviceName: "etcd"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: etcd
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: etcd
+        image: quay.io/coreos/etcd:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 20Mi
+          limits:
+            cpu: 100m
+            memory: 30Mi
+        env:
+        - name: ETCD_DATA_DIR
+          value: /etcd-data-dir
+        command:
+        - /usr/local/bin/etcd
+        - --listen-client-urls
+        - http://0.0.0.0:2379
+        - --advertise-client-urls
+        - http://localhost:2379
+        ports:
+        - containerPort: 2379
+        volumeMounts:
+        - name: etcd-data-dir
+          mountPath: /etcd-data-dir
+        readinessProbe:
+          httpGet:
+            port: 2379
+            path: /health
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+        livenessProbe:
+          httpGet:
+            port: 2379
+            path: /health
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+  volumeClaimTemplates:
+  - metadata:
+     name: etcd-data-dir
+     annotations:
+        volume.beta.kubernetes.io/storage-class: standard
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+         storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd-svc
+  namespace: default
+  labels:
+    app: etcd
+spec:
+  ports:
+  - port: 2379
+    name: etcd
+    targetPort: 2379
+  selector:
+    app: etcd
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/tls
+metadata:
+  name: apiserver-operator
+  namespace: default
+  labels:
+    api: apiserver-operator
+    apiserver: "true"
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURWakNDQWo0Q0NRQ1ZIOXZwekJWK3h6QU5CZ2txaGtpRzl3MEJBUXNGQURCeU1Rc3dDUVlEVlFRR0V3SjEKYmpFTE1Ba0dBMVVFQ0F3Q2MzUXhDakFJQmdOVkJBY01BV3d4Q2pBSUJnTlZCQW9NQVc4eEN6QUpCZ05WQkFzTQpBbTkxTVRFd0x3WURWUVFERENoaGNHbHpaWEoyWlhJdGIzQmxjbUYwYjNJdFkyVnlkR2xtYVdOaGRHVXRZWFYwCmFHOXlhWFI1TUI0WERURTRNREl4T1RFd05UTXlNRm9YRFRFNU1ESXhPVEV3TlRNeU1Gb3dhREVMTUFrR0ExVUUKQmhNQ2RXNHhDekFKQmdOVkJBZ01Bbk4wTVFvd0NBWURWUVFIREFGc01Rb3dDQVlEVlFRS0RBRnZNUXN3Q1FZRApWUVFMREFKdmRURW5NQ1VHQTFVRUF3d2VZWEJwYzJWeWRtVnlMVzl3WlhKaGRHOXlMbVJsWm1GMWJIUXVjM1pqCk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBeUxCbzFHZ1EyZmljaVNIWkI5cUwKRXM4UTdvdXJxcWJiYng5REV3N0JWT1g0cm5IY0IrQVR0Sm9mdzM4YU1nbHNlMmJRek5HVVBLTlBCVXphS1UwaQp2b205QU82alBGK1RaK2FNSktCWXNCcFBGZ25SY25mZktNK1d1OXByYWlYUkxiVEkydEZibmx1VHhuTlJnNnVoCmlycFJ1TEFrdVBqK2RzM0k2UG5pR1Q4clFrVis2b3d5bHB6MkxjVXhLdnVhTVhVVy9PYXRlSXMrb2Fab3B1R28KL1VmRkhCS3lmRzFpV1dIVWVnL2JuYXpGU1hFRlltVFo1cFFvUTJ1NHpPOXhIbmo0azJYSERFZkxNcy9YMDMvaQp0aWsrZVEyN1FjY1JoYVdYTlV3SGk2dks2eEJoVDBoTnFmYUgwYjhYOFAxRFBleGgyOUQ1My9kTFBrVHpsZ0xvCjl3SURBUUFCTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFCdzhhTlRFaDFycElYeEc1dUprNjJZWW5ldkZiSEQKOFZVQU5yMTY4bzZ1VEhqdURsUm1DeUh1YmhFaTBhSjVzaVcwb2x3NWgyRE1jZEZreWxaVlV3NjNTMFA3WEpzZwoxU1VEenlaOHhhVEcxSjRXc3FhZUJjR3V6VVY3ZEEzVEdOLzJGTG52cEJwK1dLWUtNUGRsU01oNDNlTGdJOGFJCnV4SVNoeTNmdkFJdCtpdnR5Ri92UnI5enJ3ZVNoOWdPK0VNTS93MFpFTWRpcFIwc1AvNkxYRDFxdWdiSms0VkcKVnhwanAxbnA0eGZ1dThHdEdpK2VJaDcyQ3BGTTdNZi9BdE04T1JTTVdiUlNlYWxudk16M3N6SFZWbHljekdNdAowdHRmbTg1NXVNcGxKUTJ2L0N3eVQzUjJXcXYvRzQvdHExZFNNbnpSU0tPajR3YVRhZHFVOHdzNgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2d0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktrd2dnU2xBZ0VBQW9JQkFRRElzR2pVYUJEWitKeUoKSWRrSDJvc1N6eER1aTZ1cXB0dHZIME1URHNGVTVmaXVjZHdINEJPMG1oL0RmeG95Q1d4N1p0RE0wWlE4bzA4RgpUTm9wVFNLK2liMEE3cU04WDVObjVvd2tvRml3R2s4V0NkRnlkOThvejVhNzJtdHFKZEV0dE1qYTBWdWVXNVBHCmMxR0RxNkdLdWxHNHNDUzQrUDUyemNqbytlSVpQeXRDUlg3cWpES1duUFl0eFRFcSs1b3hkUmI4NXExNGl6NmgKcG1pbTRhajlSOFVjRXJKOGJXSlpZZFI2RDl1ZHJNVkpjUVZpWk5ubWxDaERhN2pNNzNFZWVQaVRaY2NNUjhzeQp6OWZUZitLMktUNTVEYnRCeHhHRnBaYzFUQWVMcThyckVHRlBTRTJwOW9mUnZ4ZncvVU05N0dIYjBQbmY5MHMrClJQT1dBdWozQWdNQkFBRUNnZ0VCQUlrTE5qcTk2YXYvUWwyK21HYnRqUVRHRThqaDVkTTk2Q0RFMTFmZlBwUk0KQ25xTlUvU294cXdRaDFwSHBFckE5cXg1OUdHNVNDSDBYeFMrZTBleTNlUUJTT2luRFI5QUlQZlZqcVBBUDIvYQpOMkZVU1F1QzRnZ0xZZUpiNy9mblpTVnlDNnFwUm9nbi93eUlXUVN5SWprS3JKMlM0ekRSRDJ0dmNSL3U2Ny9TCmxaY1JCNHl2Yk41czgyNi9rNzZKbWVZQnZscjkrMHFDOEw2cW8yaTJLYTNYcU9xRW96SzZQMWoyeDdmMkx3MHoKS3d0Yi9QazhRakM4cURUVXVDUXR3dmpUTS9ucW1wK3I4OEJZRkpZbXpENE1XVUFCdHVpZ2hWdzg4b0srQmlzcQpHOEZFa3dGTTB1cXpITDBVZ0lZVXQwNjVuM215dVhkclZHNHM2NW9NaG1FQ2dZRUE5WlBrSkJ0a045ZlRqclFkCnp6VWdPVlBaSGtBdm9tQmQ4aVA4cDg0REJxbFlqYndwT3hJbkpiTnNXaHI2Yy9mcXlrWU1HY2pYREpTY1lBZ20KN2hvMU1xK25aWHpYOHBhdUhhOTFTdFZvTjViZFhpRnkzeXBmNEpuVUhtbjZ1d2VXMGpub09wRDJETWo3Wi9jNgpIQkQwUEh1eXppMGVNT1JrYjlWajlSbU95SWNDZ1lFQTBUVFNGaXhSSU1mQjFrcFMraDBYSmF5ajB0R2pUUTdYCkVkbEc2dkpMQm93Wm1XdGE2RGVVSVM4WXFOc2ZkSkZDdkxBT0g5N2FscmJmNSsrdjNyaEEvWGJYM0w5Zm44TTAKUXFtRHhBeUtLZGc2MmQ3YkI4ZndyQ3YrRFM0allIN3VuSlpvS2w3dVIxdGZQbjJIYzV2ZGY1Ni9nckp4cTQwUApFdThCay85WnFCRUNnWUVBbXJPWW81cFJ6cy82YU1wVWdRVEJrUHVlS2UxYlZKb0tkSkJ4Q0REQ1BUOFBGdkp5CnN0Q2pzcDlONFpGZk54RDFhb2tuOUZKT0RwSEwxTDh0N3c2NWRuMnJJVWE5THdmM0ZhSkRiR24xcGhjMnlxYWQKbTdJeEJlZEI5Z3JqTlZENWxPTi94TzB1NHl6MUd6QmwvZW84UWFIWEtRVEpJUm12bjdlNHFWMTVVaDhDZ1lFQQpuTzJLU2Fla2szcEVKSUpNQytHV1kyUkUzdmJ5RC9ONTBLR3pXTG0zSFlvcUNiTkYxYnNiR21sQmppZ1FTRmhPClAwdXd6S2RXUUllZEhWWG1EcU1YM1Frd2t4M2FsUFRRVnREaFRrWTV2WG05YTRDSHZDWjJtaS9GdWcxSjdEQksKdkpyMk9CSk5tcWtub0xCNDBuZXdodktGcFh4RlYvSFB4TndUeXZoWVFJRUNnWUFCZTYxTkJFQlE0VkRxdHFPbwp4UGEwZGttQkxDMlE2dkxxdmVRN1o4ZkVuTjdFa3hmUjFSWG95N1c5d2xaSlpCeHdPMnpjU0JJbUZCd1BFK1VOCjJSTXVyQmJwZnpzTkxTVG15VUZGSDFEZ1BiQ09mL054UURnczZsSEZrM2FpY1p4QVJuaTFQWHJDeTlMZXpJeVoKZW93UTc4RU1GQU0zSGpSNVF0Ry9MV0cvMlE9PQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==

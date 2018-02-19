@@ -16,8 +16,10 @@
 
 import (
 	clientset "api-server/pkg/client/clientset_generated/clientset"
-	carv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/car/v1alpha1"
-	fakecarv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/car/v1alpha1/fake"
+	customdpv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/customdp/v1alpha1"
+	fakecustomdpv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/customdp/v1alpha1/fake"
+	customrcv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/customrc/v1alpha1"
+	fakecustomrcv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/customrc/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -58,12 +60,22 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 
 var _ clientset.Interface = &Clientset{}
 
-// CarV1alpha1 retrieves the CarV1alpha1Client
-func (c *Clientset) CarV1alpha1() carv1alpha1.CarV1alpha1Interface {
-	return &fakecarv1alpha1.FakeCarV1alpha1{Fake: &c.Fake}
+// CustomdpV1alpha1 retrieves the CustomdpV1alpha1Client
+func (c *Clientset) CustomdpV1alpha1() customdpv1alpha1.CustomdpV1alpha1Interface {
+	return &fakecustomdpv1alpha1.FakeCustomdpV1alpha1{Fake: &c.Fake}
 }
 
-// Car retrieves the CarV1alpha1Client
-func (c *Clientset) Car() carv1alpha1.CarV1alpha1Interface {
-	return &fakecarv1alpha1.FakeCarV1alpha1{Fake: &c.Fake}
+// Customdp retrieves the CustomdpV1alpha1Client
+func (c *Clientset) Customdp() customdpv1alpha1.CustomdpV1alpha1Interface {
+	return &fakecustomdpv1alpha1.FakeCustomdpV1alpha1{Fake: &c.Fake}
+}
+
+// CustomrcV1alpha1 retrieves the CustomrcV1alpha1Client
+func (c *Clientset) CustomrcV1alpha1() customrcv1alpha1.CustomrcV1alpha1Interface {
+	return &fakecustomrcv1alpha1.FakeCustomrcV1alpha1{Fake: &c.Fake}
+}
+
+// Customrc retrieves the CustomrcV1alpha1Client
+func (c *Clientset) Customrc() customrcv1alpha1.CustomrcV1alpha1Interface {
+	return &fakecustomrcv1alpha1.FakeCustomrcV1alpha1{Fake: &c.Fake}
 }

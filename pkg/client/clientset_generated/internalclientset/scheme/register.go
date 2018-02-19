@@ -15,7 +15,8 @@
 */package scheme
 
 import (
-	car "api-server/pkg/apis/car/install"
+	customdp "api-server/pkg/apis/customdp/install"
+	customrc "api-server/pkg/apis/customrc/install"
 	announced "k8s.io/apimachinery/pkg/apimachinery/announced"
 	registered "k8s.io/apimachinery/pkg/apimachinery/registered"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -39,6 +40,7 @@ func init() {
 
 // Install registers the API group and adds types to a scheme
 func Install(groupFactoryRegistry announced.APIGroupFactoryRegistry, registry *registered.APIRegistrationManager, scheme *runtime.Scheme) {
-	car.Install(groupFactoryRegistry, registry, scheme)
+	customdp.Install(groupFactoryRegistry, registry, scheme)
+	customrc.Install(groupFactoryRegistry, registry, scheme)
 
 }

@@ -1,7 +1,0 @@
-note: CarController Example
-sample: |
-  apiVersion: car.emruz.example.com/v1alpha1
-  kind: CarController
-  metadata:
-    name: carcontroller-example
-  spec:

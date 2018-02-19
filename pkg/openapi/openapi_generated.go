@@ -29,10 +29,10 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"api-server/pkg/apis/car/v1alpha1.CarController": {
+		"api-server/pkg/apis/customdp/v1alpha1.CustomDeployment": {
 			Schema: spec.Schema{
 				SchemaProps: spec.SchemaProps{
-					Description: "CarController",
+					Description: "CustomDeployment",
 					Properties: map[string]spec.Schema{
 						"kind": {
 							SchemaProps: spec.SchemaProps{
@@ -55,21 +55,21 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 						},
 						"spec": {
 							SchemaProps: spec.SchemaProps{
-								Ref: ref("api-server/pkg/apis/car/v1alpha1.CarControllerSpec"),
+								Ref: ref("api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentSpec"),
 							},
 						},
 						"status": {
 							SchemaProps: spec.SchemaProps{
-								Ref: ref("api-server/pkg/apis/car/v1alpha1.CarControllerStatus"),
+								Ref: ref("api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentStatus"),
 							},
 						},
 					},
 				},
 			},
 			Dependencies: []string{
-				"api-server/pkg/apis/car/v1alpha1.CarControllerSpec", "api-server/pkg/apis/car/v1alpha1.CarControllerStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+				"api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentSpec", "api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 		},
-		"api-server/pkg/apis/car/v1alpha1.CarControllerList": {
+		"api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentList": {
 			Schema: spec.Schema{
 				SchemaProps: spec.SchemaProps{
 					Properties: map[string]spec.Schema{
@@ -98,7 +98,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 								Items: &spec.SchemaOrArray{
 									Schema: &spec.Schema{
 										SchemaProps: spec.SchemaProps{
-											Ref: ref("api-server/pkg/apis/car/v1alpha1.CarController"),
+											Ref: ref("api-server/pkg/apis/customdp/v1alpha1.CustomDeployment"),
 										},
 									},
 								},
@@ -109,12 +109,12 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 				},
 			},
 			Dependencies: []string{
-				"api-server/pkg/apis/car/v1alpha1.CarController", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+				"api-server/pkg/apis/customdp/v1alpha1.CustomDeployment", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 		},
-		"api-server/pkg/apis/car/v1alpha1.CarControllerSchemeFns": {
+		"api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentSchemeFns": {
 			Schema: spec.Schema{
 				SchemaProps: spec.SchemaProps{
-					Description: "CarController Functions and Structs",
+					Description: "CustomDeployment Functions and Structs",
 					Properties: map[string]spec.Schema{
 						"DefaultSchemeFns": {
 							SchemaProps: spec.SchemaProps{
@@ -128,25 +128,25 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 			Dependencies: []string{
 				"github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultSchemeFns"},
 		},
-		"api-server/pkg/apis/car/v1alpha1.CarControllerSpec": {
+		"api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentSpec": {
 			Schema: spec.Schema{
 				SchemaProps: spec.SchemaProps{
-					Description: "CarControllerSpec defines the desired state of CarController",
+					Description: "CustomDeploymentSpec defines the desired state of CustomDeployment",
 					Properties:  map[string]spec.Schema{},
 				},
 			},
 			Dependencies: []string{},
 		},
-		"api-server/pkg/apis/car/v1alpha1.CarControllerStatus": {
+		"api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentStatus": {
 			Schema: spec.Schema{
 				SchemaProps: spec.SchemaProps{
-					Description: "CarControllerStatus defines the observed state of CarController",
+					Description: "CustomDeploymentStatus defines the observed state of CustomDeployment",
 					Properties:  map[string]spec.Schema{},
 				},
 			},
 			Dependencies: []string{},
 		},
-		"api-server/pkg/apis/car/v1alpha1.CarControllerStatusStrategy": {
+		"api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentStatusStrategy": {
 			Schema: spec.Schema{
 				SchemaProps: spec.SchemaProps{
 					Properties: map[string]spec.Schema{
@@ -162,7 +162,190 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 			Dependencies: []string{
 				"github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultStatusStorageStrategy"},
 		},
-		"api-server/pkg/apis/car/v1alpha1.CarControllerStrategy": {
+		"api-server/pkg/apis/customdp/v1alpha1.CustomDeploymentStrategy": {
+			Schema: spec.Schema{
+				SchemaProps: spec.SchemaProps{
+					Properties: map[string]spec.Schema{
+						"DefaultStorageStrategy": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultStorageStrategy"),
+							},
+						},
+					},
+					Required: []string{"DefaultStorageStrategy"},
+				},
+			},
+			Dependencies: []string{
+				"github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultStorageStrategy"},
+		},
+		"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationController": {
+			Schema: spec.Schema{
+				SchemaProps: spec.SchemaProps{
+					Description: "CustomReplicationController",
+					Properties: map[string]spec.Schema{
+						"kind": {
+							SchemaProps: spec.SchemaProps{
+								Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds",
+								Type:        []string{"string"},
+								Format:      "",
+							},
+						},
+						"apiVersion": {
+							SchemaProps: spec.SchemaProps{
+								Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources",
+								Type:        []string{"string"},
+								Format:      "",
+							},
+						},
+						"metadata": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+							},
+						},
+						"spec": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerSpec"),
+							},
+						},
+						"status": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerStatus"),
+							},
+						},
+					},
+				},
+			},
+			Dependencies: []string{
+				"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerSpec", "api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+		},
+		"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerList": {
+			Schema: spec.Schema{
+				SchemaProps: spec.SchemaProps{
+					Properties: map[string]spec.Schema{
+						"kind": {
+							SchemaProps: spec.SchemaProps{
+								Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds",
+								Type:        []string{"string"},
+								Format:      "",
+							},
+						},
+						"apiVersion": {
+							SchemaProps: spec.SchemaProps{
+								Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources",
+								Type:        []string{"string"},
+								Format:      "",
+							},
+						},
+						"metadata": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
+							},
+						},
+						"items": {
+							SchemaProps: spec.SchemaProps{
+								Type: []string{"array"},
+								Items: &spec.SchemaOrArray{
+									Schema: &spec.Schema{
+										SchemaProps: spec.SchemaProps{
+											Ref: ref("api-server/pkg/apis/customrc/v1alpha1.CustomReplicationController"),
+										},
+									},
+								},
+							},
+						},
+					},
+					Required: []string{"items"},
+				},
+			},
+			Dependencies: []string{
+				"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationController", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+		},
+		"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerSchemeFns": {
+			Schema: spec.Schema{
+				SchemaProps: spec.SchemaProps{
+					Description: "CustomReplicationController Functions and Structs",
+					Properties: map[string]spec.Schema{
+						"DefaultSchemeFns": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultSchemeFns"),
+							},
+						},
+					},
+					Required: []string{"DefaultSchemeFns"},
+				},
+			},
+			Dependencies: []string{
+				"github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultSchemeFns"},
+		},
+		"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerSpec": {
+			Schema: spec.Schema{
+				SchemaProps: spec.SchemaProps{
+					Description: "CustomReplicationControllerSpec defines the desired state of CustomReplicationController",
+					Properties: map[string]spec.Schema{
+						"replicas": {
+							SchemaProps: spec.SchemaProps{
+								Type:   []string{"integer"},
+								Format: "int32",
+							},
+						},
+						"template": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("k8s.io/api/core/v1.PodTemplate"),
+							},
+						},
+					},
+					Required: []string{"replicas", "template"},
+				},
+			},
+			Dependencies: []string{
+				"k8s.io/api/core/v1.PodTemplate"},
+		},
+		"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerStatus": {
+			Schema: spec.Schema{
+				SchemaProps: spec.SchemaProps{
+					Description: "CustomReplicationControllerStatus defines the observed state of CustomReplicationController",
+					Properties: map[string]spec.Schema{
+						"available_replicas": {
+							SchemaProps: spec.SchemaProps{
+								Type:   []string{"integer"},
+								Format: "int32",
+							},
+						},
+						"creating_replicas": {
+							SchemaProps: spec.SchemaProps{
+								Type:   []string{"integer"},
+								Format: "int32",
+							},
+						},
+						"terminating_replicas": {
+							SchemaProps: spec.SchemaProps{
+								Type:   []string{"integer"},
+								Format: "int32",
+							},
+						},
+					},
+					Required: []string{"available_replicas", "creating_replicas", "terminating_replicas"},
+				},
+			},
+			Dependencies: []string{},
+		},
+		"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerStatusStrategy": {
+			Schema: spec.Schema{
+				SchemaProps: spec.SchemaProps{
+					Properties: map[string]spec.Schema{
+						"DefaultStatusStorageStrategy": {
+							SchemaProps: spec.SchemaProps{
+								Ref: ref("github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultStatusStorageStrategy"),
+							},
+						},
+					},
+					Required: []string{"DefaultStatusStorageStrategy"},
+				},
+			},
+			Dependencies: []string{
+				"github.com/kubernetes-incubator/apiserver-builder/pkg/builders.DefaultStatusStorageStrategy"},
+		},
+		"api-server/pkg/apis/customrc/v1alpha1.CustomReplicationControllerStrategy": {
 			Schema: spec.Schema{
 				SchemaProps: spec.SchemaProps{
 					Properties: map[string]spec.Schema{

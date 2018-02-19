@@ -19,7 +19,8 @@ package internalversion
 
 import (
 	internalclientset "api-server/pkg/client/clientset_generated/internalclientset"
-	car "api-server/pkg/client/informers_generated/internalversion/car"
+	customdp "api-server/pkg/client/informers_generated/internalversion/customdp"
+	customrc "api-server/pkg/client/informers_generated/internalversion/customrc"
 	internalinterfaces "api-server/pkg/client/informers_generated/internalversion/internalinterfaces"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
@@ -121,9 +122,14 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Car() car.Interface
+	Customdp() customdp.Interface
+	Customrc() customrc.Interface
 }
 
-func (f *sharedInformerFactory) Car() car.Interface {
-	return car.New(f, f.namespace, f.tweakListOptions)
+func (f *sharedInformerFactory) Customdp() customdp.Interface {
+	return customdp.New(f, f.namespace, f.tweakListOptions)
+}
+
+func (f *sharedInformerFactory) Customrc() customrc.Interface {
+	return customrc.New(f, f.namespace, f.tweakListOptions)
 }

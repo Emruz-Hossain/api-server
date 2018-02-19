@@ -31,5 +31,5 @@ import (
 
 func main() {
 	version := "v0"
-	server.StartApiServer("/registry/emruz.example.com", apis.GetAllApiBuilders(), openapi.GetOpenAPIDefinitions, "Api", version)
+	server.StartApiServer("/registry/emruz.com", apis.GetAllApiBuilders(), openapi.GetOpenAPIDefinitions, "Api", version)
 }

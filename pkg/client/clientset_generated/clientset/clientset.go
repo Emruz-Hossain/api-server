@@ -15,7 +15,8 @@
 */package clientset
 
 import (
-	carv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/car/v1alpha1"
+	customdpv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/customdp/v1alpha1"
+	customrcv1alpha1 "api-server/pkg/client/clientset_generated/clientset/typed/customrc/v1alpha1"
 	glog "github.com/golang/glog"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
@@ -24,27 +25,42 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	CarV1alpha1() carv1alpha1.CarV1alpha1Interface
+	CustomdpV1alpha1() customdpv1alpha1.CustomdpV1alpha1Interface
 	// Deprecated: please explicitly pick a version if possible.
-	Car() carv1alpha1.CarV1alpha1Interface
+	Customdp() customdpv1alpha1.CustomdpV1alpha1Interface
+	CustomrcV1alpha1() customrcv1alpha1.CustomrcV1alpha1Interface
+	// Deprecated: please explicitly pick a version if possible.
+	Customrc() customrcv1alpha1.CustomrcV1alpha1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	carV1alpha1 *carv1alpha1.CarV1alpha1Client
+	customdpV1alpha1 *customdpv1alpha1.CustomdpV1alpha1Client
+	customrcV1alpha1 *customrcv1alpha1.CustomrcV1alpha1Client
 }
 
-// CarV1alpha1 retrieves the CarV1alpha1Client
-func (c *Clientset) CarV1alpha1() carv1alpha1.CarV1alpha1Interface {
-	return c.carV1alpha1
+// CustomdpV1alpha1 retrieves the CustomdpV1alpha1Client
+func (c *Clientset) CustomdpV1alpha1() customdpv1alpha1.CustomdpV1alpha1Interface {
+	return c.customdpV1alpha1
 }
 
-// Deprecated: Car retrieves the default version of CarClient.
+// Deprecated: Customdp retrieves the default version of CustomdpClient.
 // Please explicitly pick a version.
-func (c *Clientset) Car() carv1alpha1.CarV1alpha1Interface {
-	return c.carV1alpha1
+func (c *Clientset) Customdp() customdpv1alpha1.CustomdpV1alpha1Interface {
+	return c.customdpV1alpha1
+}
+
+// CustomrcV1alpha1 retrieves the CustomrcV1alpha1Client
+func (c *Clientset) CustomrcV1alpha1() customrcv1alpha1.CustomrcV1alpha1Interface {
+	return c.customrcV1alpha1
+}
+
+// Deprecated: Customrc retrieves the default version of CustomrcClient.
+// Please explicitly pick a version.
+func (c *Clientset) Customrc() customrcv1alpha1.CustomrcV1alpha1Interface {
+	return c.customrcV1alpha1
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -63,7 +79,11 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 	}
 	var cs Clientset
 	var err error
-	cs.carV1alpha1, err = carv1alpha1.NewForConfig(&configShallowCopy)
+	cs.customdpV1alpha1, err = customdpv1alpha1.NewForConfig(&configShallowCopy)
+	if err != nil {
+		return nil, err
+	}
+	cs.customrcV1alpha1, err = customrcv1alpha1.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +100,8 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 // panics if there is an error in the config.
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	var cs Clientset
-	cs.carV1alpha1 = carv1alpha1.NewForConfigOrDie(c)
+	cs.customdpV1alpha1 = customdpv1alpha1.NewForConfigOrDie(c)
+	cs.customrcV1alpha1 = customrcv1alpha1.NewForConfigOrDie(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClientForConfigOrDie(c)
 	return &cs
@@ -89,7 +110,8 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.carV1alpha1 = carv1alpha1.New(c)
+	cs.customdpV1alpha1 = customdpv1alpha1.New(c)
+	cs.customrcV1alpha1 = customrcv1alpha1.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs

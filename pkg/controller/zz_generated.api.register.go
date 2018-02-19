@@ -19,7 +19,8 @@ limitations under the License.
 package controller
 
 import (
-	"api-server/pkg/controller/carcontroller"
+	"api-server/pkg/controller/customdeployment"
+	"api-server/pkg/controller/customreplicationcontroller"
 	"api-server/pkg/controller/sharedinformers"
 	"github.com/kubernetes-incubator/apiserver-builder/pkg/controller"
 	"k8s.io/client-go/rest"
@@ -29,6 +30,7 @@ func GetAllControllers(config *rest.Config) ([]controller.Controller, chan struc
 	shutdown := make(chan struct{})
 	si := sharedinformers.NewSharedInformers(config, shutdown)
 	return []controller.Controller{
-		carcontroller.NewCarControllerController(config, si),
+		customdeployment.NewCustomDeploymentController(config, si),
+		customreplicationcontroller.NewCustomReplicationControllerController(config, si),
 	}, shutdown
 }

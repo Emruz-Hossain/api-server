@@ -1,0 +1,7 @@
+note: CustomDeployment Example
+sample: |
+  apiVersion: customdp.emruz.com/v1alpha1
+  kind: CustomDeployment
+  metadata:
+    name: customdeployment-example
+  spec:
